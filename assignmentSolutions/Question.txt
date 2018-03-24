@@ -1,0 +1,49 @@
+1.Queue and Stack, which collection to use and why?
+
+2.Read words from a file, & store words with its number of occurence in a collection Sort this in order of occurance and if frequency is same sort by word 
+
+3.Internal working of ArrayList , LinkedListand Vector.
+
+4.Difference and similarities in ArrayList and Vector.
+
+5.ArrayList vs LinkedList vs HashSet
+
+6.There's a list of integers, how to remove even nos from it and how to add more integers if there's even nos, adding elements would be 2*(even no present in list)
+
+7.HashMap internal working. How to arrange objects in a order in a HashMap?Difference between Ordering and Sorting
+
+8.How you will sort an arraylist based on certain fields?
+
+9.Hashmap implementation in depth and where could we possibly use a hashmap.What would happen if we have millions of objects which return the same hashcode or retutn same index for the bucket have to be stored.Share your view on this problem.
+
+10.What did you do to provide low latency and high throughput in your application.
+
+11.What would you use TreeSet or HashSet and in which scenes.
+
+12.A problem to find the character at a provided index as input.
+For example ,find 15th  or ith character in the string whose blueprint is    sdsdsdsdd4xfgfgf7ghff7aqqq6gt5........to infinity.The buleprint means
+that the sequence sdsdsdsdd would for example occur 4 times followed by xfgfgf which would occue for 7 times.
+Here,the string is very large and need to assume that it will not throw outofmemory error.
+
+13.HashMap Implementation and hashing techniques? Can we ensure hashCode never returns duplicate values?
+
+14.You have 8 balls out of which 7 balls are same weight and one is heavier. How many iterations will it take to find out the heaviest?
+Can you optimize the solution?
+
+15.Write a code to find a to the power of b. Can we reduce the number of calls in the call stack of the function? How?
+
+16.How would you control selected data from not being updated before you update it and commit into DB.Basically,how would you control concurrent database access for your jdbc application.
+
+17.List<Object> l = new ArrayList<String>();
+
+18.hashcode & equals, consequences
+
+19.significance of loadfactor
+
+20.What do you mean by fail-fast?Which Collection classes are failfast.
+
+21.Difference between hashSet and hashmap.
+
+22.ArrayList V/s LinkedList.When arraylist increases it's size and by how much?
+
+23.Hashing Technique

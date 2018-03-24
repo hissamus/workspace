@@ -1,0 +1,63 @@
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import javax.swing.plaf.SliderUI;
+
+public class LockExample implements Runnable {
+
+	private Resource r;
+	private Lock lock=new ReentrantLock(true);
+	public LockExample(Resource r) {
+		this.r=r;
+	}
+
+	public static void main(String[] args) {
+		 Resource r=new Resource();
+		 LockExample l1=new LockExample(r);
+		 LockExample l2=new LockExample(r);
+		 LockExample l3=new LockExample(r);
+		 LockExample l4=new LockExample(r);
+		 LockExample l5=new LockExample(r);
+		 
+		 Thread t1=new Thread(l1,"Thread-1");t1.start();
+		 Thread t2=new Thread(l1,"Thread-1");t2.start();
+		 Thread t3=new Thread(l1,"Thread-1");t3.start();
+		 Thread t4=new Thread(l1,"Thread-1");t4.start();
+		 Thread t5=new Thread(l1,"Thread-1");t5.start();
+		 
+		 
+		
+	}
+
+	@Override
+	public void run() {
+		
+		try {
+			if(lock.tryLock(1,TimeUnit.SECONDS)){
+				System.out.println(Thread.currentThread().getName() +" ... Doing M() computations");
+				r.m();
+			}
+			r.n();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+}
+
+
+class Resource{
+	
+	
+	public void m() throws InterruptedException{
+		//System.out.println("Doing m computations");
+		Thread.sleep(5000);
+	}
+	
+	public void n(){
+		System.out.println(Thread.currentThread().getName() +" ... Doing N() computations");
+	}
+}

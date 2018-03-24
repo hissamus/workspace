@@ -1,0 +1,84 @@
+package arrays;
+
+import java.util.Arrays;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class IntersectionArray {
+
+	public static void main(String[] args) {
+	
+		Result r=JUnitCore.runClasses(IntersectionArray.class);
+			if(!r.wasSuccessful()){
+				for(Failure f :  r.getFailures()){
+					System.out.println(f.getMessage()+"|"+f.toString()+"|"+f.getMessage()+"|"+f.getDescription());
+					
+				}
+			}
+		
+	}
+	
+	public  int[]  arrayIntersection(int[] A, int[] B) {
+		
+		Arrays.sort(A);Arrays.sort(B);
+		int[] result=null;
+		try{
+		if(A.length>B.length){
+			result=new int[B.length];
+			result=sort(B,A,result);
+			}
+		else {
+			result=new int[A.length];
+			result=sort(A,B,result);
+		}
+		}
+		catch (Exception e) {
+			System.out.println(e.getStackTrace());
+		}
+		System.out.println(result.toString());
+		return result;
+	}
+	
+	private int[] sort(int[] A, int[] B, int[] result) throws Exception{
+		int resultLength=0,intA=0,intB=0,count=0;;
+	
+		for (int i = 0; i < A.length;) {
+			if(intB>B.length-1)break;
+			if(intA>A.length-1)break;
+			int a = A[intA];
+			int b = B[intB];
+			if (a == b) {
+				result[resultLength++] = a;
+				count++;
+				intA++;
+				intB++;
+				i++;
+			} else if (a > b)
+				intB++;
+			else {
+				intA++;
+				i++;
+			}
+		}
+		int[]resultant=null;
+		System.arraycopy(result, 0, resultant, 0, count);
+		return resultant;
+	}
+	
+	@Test
+	public void arrayIntersectionTest(){
+		IntersectionArray sortingArrayClass=new IntersectionArray();
+		
+		int[] a= {1,33,22,4,6,31,78,34};
+		int[] b= {1,32,24,4,6,3,8,34};
+		int[] r={1,4,6,34};
+		
+		Assert.assertArrayEquals(r, sortingArrayClass.arrayIntersection(a, b));
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+package com.hissam;
+
+public class Human extends AbstractClass {
+
+	public Human() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

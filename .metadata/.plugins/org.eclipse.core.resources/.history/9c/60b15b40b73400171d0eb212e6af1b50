@@ -1,0 +1,39 @@
+package com.hacker;
+
+import java.util.Scanner;
+
+public class ToggleString {
+
+    public static void main(String args[] ) throws Exception {
+        /*
+         * Read input from stdin and provide input before running
+         * Use either of these methods for input
+
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String line = br.readLine();
+        int N = Integer.parseInt(line);
+*/
+        //Scanner
+        Scanner s = new Scanner(System.in);
+        while(true){
+        StringBuilder N = new  StringBuilder( s.nextLine());
+        StringBuilder R=new StringBuilder();
+        String L,L1,U,U1;
+        for(int i=0;i<N.length();i++){
+        	U=null;
+        	L1=N.substring(i,i+1);
+        	L=N.substring(i,i+1).toLowerCase();        	
+        	if(L.equals(L1)){
+        		U=N.substring(i,i+1).toUpperCase();
+        		R.append(U);
+        	}else{
+        		R.append(L);
+        	}
+        }
+        
+        
+        System.out.println(R.toString());
+        }
+}
+}

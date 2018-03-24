@@ -1,0 +1,32 @@
+Latency: "reducing the time between receiving the information and response to the information"
+high throughput: the amount of the data you can process in a given amount of time.
+G1 is the new low latency garbage collector planned to replace CMS in the Hotspot JVM.
+The first is that G1 is a compacting collector.
+ Compacting, a process by which live objects are moved over 
+free memory space towards one end of the heap so that the other becomes one contiguous free area of memory
+
+Solution: 
+Don’t allocate objects needlessly
+More frequent allocations means more frequent Garbage Collections
+
+About Large objects
+Expensive to allocate
+Expensive to initialise
+
+Data structure resizing
+Avoid resizing of array backed “container objects”
+Use the constructor that takes an explicit size parameter
+Resizing leads to unnecessary object allocation
+Can also contribute to fragmentation
+
+Finalizers
+Dont use them unless you really need it 
+It Requires at least 2 GCs cycles and GC cycles are slower
+alternative to finalizers are reference object.
+
+Inner classes
+• Have an implicit reference to the outer instance
+• Can potentially increase object retention and graph
+complexity
+• Net affect is the potential for increased GC duration
+• Thus increased latency

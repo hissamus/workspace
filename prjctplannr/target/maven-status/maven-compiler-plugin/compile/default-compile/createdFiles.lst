@@ -1,0 +1,7 @@
+com\addidas\test\prjctplannr\App.class
+com\addidas\test\prjctplannr\resources\Employee.class
+com\addidas\test\prjctplannr\resources\Skills.class
+com\addidas\test\prjctplannr\planning\ProjectPlannerImpl.class
+com\addidas\test\prjctplannr\resources\Resources.class
+com\addidas\test\prjctplannr\planning\IProjectPlanner.class
+com\addidas\test\prjctplannr\resources\Project.class

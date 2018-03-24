@@ -1,0 +1,69 @@
+import static org.junit.Assert.assertArrayEquals;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+public class BubbleSortTest {
+	private static int i = 1;
+
+//	@BeforeClass
+//	public static void runBeforeClass() {
+//		System.out.println("before class " + ++i);
+//	}
+//
+//	@AfterClass
+//	public static void runAfterClass() {
+//		System.out.println("after class " + ++i);
+//	}
+//
+//	@Before
+//	public void runBeforeTest() {
+//		System.out.println("before test " + ++i);
+//	}
+//
+//	@After
+//	public void runAfterTest() {
+//		System.out.println("after test " + ++i);
+//	}
+
+	@Test
+	public void sortSortedList() {
+		System.out.println("sortSortedList " + i);
+		checkLocalSortedArrayreturnsExpected(new int[] { 0, 1 }, new int[] { 0, 1 });
+	}
+
+	@Test
+	public void sortUnsortedlistofLengthTwo() throws Exception {
+		System.out.println("sortUnsortedlistofLengthTwo " + i);
+		checkLocalSortedArrayreturnsExpected(new int[] { 0, 1 }, new int[] { 1, 0 });
+	}
+
+	@Test
+	public void sortPartiallyUnsortedArrayOfLengthThree() throws Exception {
+		System.out.println("sortPartiallyUnsortedArrayOfLengthThree " + i);
+		checkLocalSortedArrayreturnsExpected(new int[] { 0, 1, 2 }, new int[] { 0, 2, 1 });
+	}
+
+	private void checkLocalSortedArrayreturnsExpected(int[] expectedArray, int[] actualArray) {
+		assertArrayEquals(expectedArray, BubbleSort.sort(actualArray));
+	}
+	
+	@Test(expected=ArithmeticException.class)
+	public void testDivWithException() throws Exception {
+		int i=11/0;
+	}
+	
+	@Test
+    public void testDivisionWithException() {
+
+        thrown.expect(ArithmeticException.class);
+        //thrown.expectMessage(containsString("/ by zero"));
+
+        int i = 1 / 0;
+
+    }
+	
+	@Rule
+	public ExpectedException thrown=  ExpectedException.none();
+}

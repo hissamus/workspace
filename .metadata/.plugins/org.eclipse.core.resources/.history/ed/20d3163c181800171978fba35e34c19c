@@ -1,0 +1,28 @@
+package arrays;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class IntersectionArray {
+
+	public static void main(String[] args) {
+	
+		Result r=JUnitCore.runClasses(IntersectionArray.class);
+			if(!r.wasSuccessful()){
+				for(Failure f :  r.getFailures()){
+					System.out.println(f.getMessage()+"|"+f.toString()+"|"+f.getMessage()+"|"+f.getDescription());
+					
+				}
+			}
+		
+	}
+	
+	@Test
+	public void arrayIntersectionTest(){
+		Assert.assertTrue(true);
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.hissam;
+
+public abstract class AbstractClass implements IAbstractInterface {
+	volatile Boolean  alive=true;
+	
+	AbstractClass(){
+		breath();
+	}
+	public abstract void run();
+	public void breath(){
+		while(alive)
+			System.out.println("Breathing");
+	}
+}

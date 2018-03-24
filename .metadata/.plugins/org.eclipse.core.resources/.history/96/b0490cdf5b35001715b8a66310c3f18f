@@ -1,0 +1,22 @@
+package com.hacker;
+
+import java.util.Scanner;
+
+public class RegexPassword {
+
+	public static void main(String[] args) {
+
+		Scanner in = new Scanner(System.in);
+		int testcases = Integer.parseInt(in.nextLine());
+		while (testcases-- > 0) {
+			String pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+			String password = in.nextLine();
+			if (password.matches(pattern)) {
+				System.out.println("Valid");
+			} else {
+				System.out.println("InValid");
+			}
+
+		}
+	}
+}

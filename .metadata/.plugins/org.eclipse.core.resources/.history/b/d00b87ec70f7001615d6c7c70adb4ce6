@@ -1,0 +1,9 @@
+package com.hissam;
+
+public class TestHuman {
+
+	public static void main(String[] args) {
+		Human h=new Human();
+	}
+
+}

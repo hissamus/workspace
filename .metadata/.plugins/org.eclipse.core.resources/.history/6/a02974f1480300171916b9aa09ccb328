@@ -1,0 +1,29 @@
+
+public class WaitModel implements Runnable {
+
+	public WaitModel() {
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+	@Override
+	public void run() {
+		
+	}
+
+}
+
+class Model{
+	
+	private static int i=0;
+	
+	public void incrementI(){
+		i++;
+	}
+	
+	public int getI(){
+		return this.i;
+	}
+}

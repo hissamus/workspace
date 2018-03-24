@@ -1,0 +1,19 @@
+
+public class DeadLock {
+
+	public DeadLock() {
+
+	}
+
+	synchronized public void m() {
+		m();
+	}
+
+	synchronized public void n() {
+		n();
+	}
+
+	public static void main(String args[]) {
+
+	}
+}

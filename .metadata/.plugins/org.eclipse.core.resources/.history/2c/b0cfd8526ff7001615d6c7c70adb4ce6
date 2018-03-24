@@ -1,0 +1,5 @@
+package com.hissam;
+
+public abstract class AbstractClass {
+
+}

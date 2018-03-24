@@ -1,0 +1,45 @@
+package arrays;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
+public class StringPattern {
+	
+	public static void main(String[] args) {
+		
+		/*
+		 * 4
+11
+cAda
+AbrAcadAbRa*/
+		
+		System.out.println(Pattern.matches("[cd[a]+]?", "acad"));
+		System.out.println(Pattern.matches("[cada]+", "adaC"));
+		
+//		System.out.println(Pattern.matches(".s", "as"));//true (2nd char is s)  
+//		System.out.println(Pattern.matches(".s", "mk"));//false (2nd char is not s)  
+//		System.out.println(Pattern.matches(".s.", "mst"));//false (has more than 2 char)  
+//		System.out.println(Pattern.matches(".s", "amms"));//false (has more than 2 char)  
+//		System.out.println(Pattern.matches("..s", "mas"));//true (3rd char is s)  
+		
+//		System.out.println(Pattern.matches("[amn]", "9a"));//false (not a or m or n)  
+//		System.out.println(Pattern.matches("[amn]", "a"));//true (among a or m or n)  
+//		System.out.println(Pattern.matches("[amn]", "ammmna"));//false (m and a comes more than once) 
+		
+		
+		Object o=new Object(){
+			
+			public static int l=0;
+			public void Object(){
+				l++;
+			}
+		};
+		
+		List<Object> l=new ArrayList<Object>();
+		for(int i=0;i<Integer.MAX_VALUE;i++){
+			l.add(o);
+		}
+	}
+
+}

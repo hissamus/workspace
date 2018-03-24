@@ -1,0 +1,10 @@
+package com.hacker;
+
+public class TagContentExtracter {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

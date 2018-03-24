@@ -1,0 +1,32 @@
+import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class BubbleSortTest {
+
+	@BeforeClass
+	public static void BeforeClass() {
+		// System.out.println("before class" );
+	}
+
+	@Test
+	public void sortSortedList() {
+		checkLocalSortedArrayreturnsExpected(new int[] { 0, 1 }, new int[] { 0, 1 });
+	}
+
+	@Test
+	public void sortUnsortedlistofLengthTwo() throws Exception {
+		checkLocalSortedArrayreturnsExpected(new int[] { 0, 1 }, new int[] { 1, 0 });
+	}
+
+	@Test
+	public void sortPartiallyUnsortedArrayOfLengthThree() throws Exception {
+		checkLocalSortedArrayreturnsExpected(new int[] { 0, 1, 2 }, new int[] { 0, 2, 1 });
+	}
+
+	private void checkLocalSortedArrayreturnsExpected(int[] expectedArray, int[] actualArray) {
+		assertArrayEquals(expectedArray, BubbleSort.sort(actualArray));
+	}
+
+}

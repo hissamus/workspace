@@ -1,0 +1,8 @@
+1493996147939	Move compilation units
+1493997776573	Delete element
+1494003807600	Encapsulate field 'assignedProject'
+1494004028656	Encapsulate field 'endDate'
+1494004052615	Encapsulate field 'startDate'
+1494004870504	Encapsulate field 'team'
+1494008493737	Encapsulate field 'teamRequirements'
+1494022779129	Copy packages

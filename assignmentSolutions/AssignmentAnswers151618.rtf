@@ -1,0 +1,195 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Consolas;}}
+{\colortbl ;\red127\green0\blue85;\red0\green0\blue0;\red0\green0\blue192;\red42\green0\blue255;}
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\sa200\sl276\slmult1\lang9\f0\fs22 -------------------------------------------------------------------------------------------------------------------\par
+Answer of Q 15\par
+-------------------------------------------------------------------------------------------------------------------\par
+\cf1\b\f1\fs20 import\cf2\b0  java.util.Scanner;\cf0\par
+\par
+\cf1\b public\cf2\b0  \cf1\b class\cf2\b0  CollectionTest \{\cf0\par
+\cf2\tab\cf1\b public\cf2\b0  \cf1\b static\cf2\b0  \cf1\b void\cf2\b0  main(String[] args) \{\cf0\par
+\cf2\tab\tab\cf1\b int\cf2\b0  a,b;\cf0\par
+\cf2\tab\tab\cf0\par
+\cf2\tab\tab Scanner sc=\cf1\b new\cf2\b0  Scanner(System.\cf3\i in\cf2\i0 );\cf0\par
+\cf2\tab\tab System.\cf3\i out\cf2\i0 .println(\cf4 "Enter the value of a: "\cf2 );\cf0\par
+\cf2\tab\tab a=sc.nextInt();\cf0\par
+\cf2\tab\tab System.\cf3\i out\cf2\i0 .println(\cf4 "Enter the value of b: "\cf2 );\cf0\par
+\cf2\tab\tab b=sc.nextInt();\cf0\par
+\cf2\tab\tab\cf1\b int\cf2\b0  b1=b/2;\cf0\par
+\cf2\tab\tab\cf1\b long\cf2\b0  ans=\i power\i0 (a, b1);\cf0\par
+\cf2\tab\tab\cf1\b if\cf2\b0 (b%2==0)\{\cf0\par
+\cf2\tab\tab\tab ans=ans*ans;\cf0\par
+\cf2\tab\tab\}\cf0\par
+\cf2\tab\tab\cf1\b else\cf2\b0\{\cf0\par
+\cf2\tab\tab\tab ans=(ans*ans)*a;\cf0\par
+\cf2\tab\tab\}\cf0\par
+\cf2\tab\tab System.\cf3\i out\cf2\i0 .println(a+\cf4 " raise to power of "\cf2 +b+\cf4 " is "\cf2 +ans);\cf0\par
+\cf2\tab\tab\cf0\par
+\cf2\tab\tab\cf0\par
+\cf2\tab\}\cf0\par
+\cf2\tab\cf1\b public\cf2\b0  \cf1\b static\cf2\b0  \cf1\b int\cf2\b0  power(\cf1\b int\cf2\b0  a, \cf1\b int\cf2\b0  b)\{\cf0\par
+\cf2\tab\tab\cf1\b if\cf2\b0  (b == 1) \{\cf0\par
+\cf2\tab\tab\tab\cf1\b return\cf2\b0  a;\cf0\par
+\cf2\tab\tab\tab\} \cf1\b else\cf2\b0  \cf1\b if\cf2\b0  (b == 0) \{\cf0\par
+\cf2\tab\tab\tab\cf1\b return\cf2\b0  1;\cf0\par
+\cf2\tab\tab\tab\}\cf0\par
+\par
+\cf2\tab\tab\tab\cf1\b return\cf2\b0  a * \i power\i0 (a, b - 1); \cf0\par
+\cf2\tab\tab\cf0\par
+\cf2\tab\tab\cf0\par
+\cf2\tab\}\cf0\par
+\par
+\cf2\}\cf0\f0\fs22\par
+\par
+------------------------------------------------------------------------------------------------------------------\par
+Answer of Q 16\par
+-------------------------------------------------------------------------------------------------------------------\par
+\par
+1.Connection implements wrapper interface.\par
+2.Wrapper interface provides two methods unwrap and isWrapperFor.isWrapperFor method provides wrapper for the given class.\par
+3.Implements proxy pattern.\par
+4.We can solve the problem by using transaction.By method savepoint from connection class.\par
+5.Disabling Auto-Commit Mode\par
+6.Committing Transactions\par
+7.Using Transactions to Preserve Data Integrity\par
+8.Setting and Rolling Back to Savepoints\par
+9. If void setAutoCommit(boolean autoCommit) method is called during a transaction and the auto-commit mode is changed, he transaction is committed.  If <code>setAutoCommit</code> is called and the auto-commit mode is not changed, the call is a no-op.\par
+\par
+--------------------------Code-----------------------------------------------\par
+\par
+public void modifyPricesByPercentage(\par
+    String coffeeName,\par
+    float priceModifier,\par
+    float maximumPrice)\par
+    throws SQLException \{\par
+    \par
+    con.setAutoCommit(false);\par
+\par
+    Statement getPrice = null;\par
+    Statement updatePrice = null;\par
+    ResultSet rs = null;\par
+    String query =\par
+        "SELECT COF_NAME, PRICE FROM COFFEES " +\par
+        "WHERE COF_NAME = '" + coffeeName + "'";\par
+\par
+    try \{\par
+        Savepoint save1 = con.setSavepoint();\par
+        getPrice = con.createStatement(\par
+                       ResultSet.TYPE_SCROLL_INSENSITIVE,\par
+                       ResultSet.CONCUR_READ_ONLY);\par
+        updatePrice = con.createStatement();\par
+\par
+        if (!getPrice.execute(query)) \{\par
+            System.out.println(\par
+                "Could not find entry " +\par
+                "for coffee named " +\par
+                coffeeName);\par
+        \} else \{\par
+            rs = getPrice.getResultSet();\par
+            rs.first();\par
+            float oldPrice = rs.getFloat("PRICE");\par
+            float newPrice = oldPrice + (oldPrice * priceModifier);\par
+            System.out.println(\par
+                "Old price of " + coffeeName +\par
+                " is " + oldPrice);\par
+\par
+            System.out.println(\par
+                "New price of " + coffeeName +\par
+                " is " + newPrice);\par
+\par
+            System.out.println(\par
+                "Performing update...");\par
+\par
+            updatePrice.executeUpdate(\par
+                "UPDATE COFFEES SET PRICE = " +\par
+                newPrice +\par
+                " WHERE COF_NAME = '" +\par
+                coffeeName + "'");\par
+\par
+            System.out.println(\par
+                "\\nCOFFEES table after " +\par
+                "update:");\par
+\par
+            CoffeesTable.viewTable(con);\par
+\par
+            if (newPrice > maximumPrice) \{\par
+                System.out.println(\par
+                    "\\nThe new price, " +\par
+                    newPrice +\par
+                    ", is greater than the " +\par
+                    "maximum price, " +\par
+                    maximumPrice +\par
+                    ". Rolling back the " +\par
+                    "transaction...");\par
+\par
+                con.rollback(save1);\par
+\par
+                System.out.println(\par
+                    "\\nCOFFEES table " +\par
+                    "after rollback:");\par
+\par
+                CoffeesTable.viewTable(con);\par
+            \}\par
+            con.commit();\par
+        \}\par
+    \} catch (SQLException e) \{\par
+        JDBCTutorialUtilities.printSQLException(e);\par
+    \} finally \{\par
+        if (getPrice != null) \{ getPrice.close(); \}\par
+        if (updatePrice != null) \{\par
+            updatePrice.close();\par
+        \}\par
+        con.setAutoCommit(true);\par
+    \}\par
+\}\par
+-------------------------------------------------------------------------------------------------------------------\par
+Answer of Q 18\par
+-------------------------------------------------------------------------------------------------------------------\par
+1.Method of object class.\par
+2.To successfully store and retrieve objects from a hashtable, the objects used as keys must implement the hashCode method and the equals method. \par
+3.What would happen if Integer did not override equals() and hashCode()? Nothing, if we never used an Integer as a key in a HashMap or other hash-based collection. However, if we were to use such an Integer object for a key in a HashMap, we would not be able to reliably retrieve the associated value, unless we used the exact same Integer instance in the get() call as we did in the put() call. This would require ensuring that we only use a single instance of the Integer object corresponding to a particular integer value throughout our program. Needless to say, this approach would be inconvenient and error prone. \par
+4.The language allows developers flexibility when determining how objects are compared for equality. If you want your User objects to be \lquote equal\rquote  if firstName, lastName, and age are all equal, but disregard Social Security Number, you can code it that way. Flexibility is good because object equality can be based on the content of the objects. We create a hashcode() value that is consistent with equals? Because there is no way for the compiler to know what would be consistent. \par
+\par
+5. More formally, if map contains a mapping from a key k value v such that(key==null ? k==null :key.equals(k)), then this method returns  v otherwise it returns  null(There can be at most one such mapping.)\par
+A return value of nullnecessarily indicate that the map contains no mapping for the key; it's also possible that the map explicitly maps the key to null. The containsKey operation may be used to distinguish these two cases.\par
+ \par
+6. contains key true if this map contains a mapping for the specified key.\par
+-----------------------------Code------------------------------------\par
+package collections;\par
+\par
+import java.util.HashMap;\par
+import java.util.Map;\par
+\par
+public class CustomerID \{\par
+\tab   private long crmID;\par
+\tab   private int nameSpace;\par
+\par
+\tab   public CustomerID(long crmID, int nameSpace) \{\par
+\tab     super();\par
+\tab     this.crmID = crmID;\par
+\tab     this.nameSpace = nameSpace;\par
+\tab   \}\par
+\par
+\tab   public boolean equals(Object obj) \{\par
+\tab     //null instanceof Object will always return false\par
+\tab     if (!(obj instanceof CustomerID))\par
+\tab       return false;\par
+\tab     if (obj == this)\par
+\tab       return true;\par
+\tab     return  this.crmID == ((CustomerID) obj).crmID &&\par
+\tab             this.nameSpace == ((CustomerID) obj).nameSpace;\par
+\tab   \}\par
+\tab   public int hashCode() \{\par
+\tab\tab     int result = 0;\par
+\tab\tab     result = (int)(crmID/12) + nameSpace;\par
+\tab\tab     return result;\par
+\tab\tab   \}\par
+\tab   public static void main(String[] args) \{\par
+\tab     Map m = new HashMap();\par
+\tab     m.put(new CustomerID(2345891234L,0),"Jeff Smith");\par
+\tab     System.out.println(m.get(new CustomerID(2345891234L,0)));\par
+            //System.out.println(m.containsKey(new CustomerID(2345891234L,0)));\par
+\tab   \}\par
+\par
+\tab\}\par
+}
+ 

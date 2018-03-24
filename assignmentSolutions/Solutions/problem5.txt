@@ -1,0 +1,46 @@
+LinkedList Vs ArrayList :
+
+•	LinkedList and ArrayList are two different implementations of the List interface. 
+•	LinkedList implements it with a doubly-linked list whereas ArrayList implements it with a  dynamically resizing array.
+•	Depending upon the algorithm used to perform various operations, the methods of LinkedList and   
+•	ArrayList has different runtimes:
+          
+          	      For LinkedList
+•get is O(n)
+•add is O(1)
+•remove is O(n)
+•Iterator.remove is O(1)
+     
+	      For ArrayList
+•get is O(1)
+•add is O(1) amortized, but O(n) worst-case since the array must be resized and copied
+•remove is O(n)
+
+•LinkedList has constant time for insertion and removal, all time it takes to traverse to the nth element. In other words, you can walk the list forwards or backwards, but grabbing an element in the middle takes time proportional to the size of the list.  Whereas ArrayList has direct access to the nth element but adding or removing from anywhere but the end requires shifting all the latter elements over, either to make an opening or fill the gap. Also, if you add more elements than the capacity of the underlying array, a new array (150% the size) is allocated, and the old array is copied to the new one, so adding to an ArrayList is O(n) in the worst case but constant on average.
+
+•Also, if you have large lists, keep in mind that memory usage is also different. Each element of a LinkedList has more overhead since pointers to the next and previous elements are also stored. ArrayLists don't have this overhead. However, ArrayLists take up as much memory as is allocated for the capacity, regardless of whether elements have actually been added.
+
+•The default size of an ArrayList is 10(as from java1.4).  But the ArrayList of can be resized depending upon the situation. When you know there are more than 10 elements are to be added, you can construct the ArrayList with larger initial size to avoid further expensive arraycopy functionality.
+
+
+
+
+
+
+
+
+
+
+
+ArrayList or LinkedList Vs HashSet
+
+
+•	First and most important difference between ArrayList and HashSet is that ArrayList implements List interface whileHashSet implements Set interface in Java.
+
+•	Another difference between ArrayList or LinkedList and HashSet is that ArrayList or LinkedList allow duplicates while HashSet doesn't allow duplicates. This is the side effect of fist difference and property of implementing List and Set interface.
+
+•	Third difference between ArrayList or LinkedList and HashSet is that ArrayList or LinkedList is an ordered collection and maintains insertion order of elements while HashSet is an unordered collection and doesn't maintain any order.
+
+•	 Fourth difference between ArrayList or LinkedList and HashSet is that ArrayList or LinkedList is backed by an Array while HashSet is backed by an HashMap instance.
+
+•	Fifth difference between HashSet and ArrayList or LinkedList is that its index based you can retrieve object by calling get(index) or remove objects by calling remove(index) while HashSet is completely object based. HashSet also doesn't provide get() method.

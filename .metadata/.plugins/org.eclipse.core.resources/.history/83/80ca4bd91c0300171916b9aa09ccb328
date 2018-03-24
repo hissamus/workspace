@@ -1,0 +1,31 @@
+
+public class DeadLock {
+
+	public DeadLock() {
+
+	}
+
+	synchronized public void m() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		m();
+	}
+
+	synchronized public void n() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		n();
+	}
+
+	public static void main(String args[]) {
+
+	}
+}

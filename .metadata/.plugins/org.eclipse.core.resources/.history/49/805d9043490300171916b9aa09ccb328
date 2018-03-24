@@ -1,0 +1,43 @@
+
+public class WaitModel implements Runnable {
+	private Model m;
+	public WaitModel(Model m) {
+		this.m=m;
+	}
+
+	public static void main(String[] args) {
+
+	}
+
+	@Override
+	public void run() {
+			System.out.println(Thread.currentThread().getName()+ "going to wait now" );
+			
+			try{
+				while(!Thread.currentThread().isInterrupted()){
+					synchronized (m) {
+						m.wait();	
+					}					
+				}
+			}catch(InterruptedException e){
+				System.out.println(Thread.currentThread().getName()+" got interuppted.. Done.");
+				
+			}
+			catch (Exception e) {
+			}
+	}
+
+}
+
+class Model{
+	
+	private static int i=0;
+	
+	public void incrementI(){
+		i++;
+	}
+	
+	public int getI(){
+		return this.i;
+	}
+}

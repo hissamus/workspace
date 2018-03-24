@@ -1,0 +1,114 @@
+Deepak Sharma
+Neha Wuthoo
+Harsha Patil
+
+
+Below are the answers that we prepared - 
+
+
+4. Difference and similarities in ArrayList and Vector.
+
+Differences : 
+•	All the methods of Vector are synchronized. But, the methods of ArrayList are not synchronized.
+•	Vector doubles the size of its array when its size is increased. But, ArrayList increases by half of its size when its size is increased.
+•	Using a 'synchronized' method affects performance. So, ArraryList is faster than Vector.
+(Executing a ‘synchronized’ method results in costlier performance than a unsynchronized method. So, using Vector will incur a performance hit than the ArrayList.)
+•	Arraylist don't define any increment size while vector does. 
+
+Similarities : 
+•	Vector and ArrayList both uses Array internally as data structure. They are dynamically resizable. 
+•	Arraylist and vector both have the default size of 10. 
+•	ArrayList can be synchronized using the java collections framework utility class and then ArrayList itself can be used in place of Vector.
+
+5 .ArrayList vs LinkedList vs HashSet
+
+•	Since ArrayList is an index based data-structure searching or getting element from ArrayList with index is pretty fast. , LinkedList doesn't provide Random or index based access and you need to iterate over linked list to retrieve any element, In HashSet member object is used for calculating hashcode value which can be same for two objects so equal () method is used to check for equality if it returns false that means two objects are different.
+•	ArrayList and Linked list both are allowed duplicate element whereas Hash set is not allowed any duplicate element.
+•	Linked List has more memory overhead than ArrayList because in ArrayList each index only holds actual object (data) but in case of LinkedList each node holds both data and address of next and previous node.
+•	A LinkedList are more efficient speed wise than ArrayList when inserting and removing at random places in the list multiple times. If you're just adding to the end of the list, an ArrayList is better
+
+6. There's a list of integers, how to remove even nos from it and how to add more integers if there's even nos, adding elements would be 2*(even no present in list)
+
+Answer -  Please find the attached program for the answer of above question.
+package com.pack.assign;
+
+
+/*
+ * Question: There's a list of integers, how to remove even numbers from it.
+ * 
+ * */
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class QuestionSixPartFirst {
+
+	public static void main(String[] args) {
+
+		ArrayList<Integer> arrayList = new ArrayList<Integer>();
+
+		arrayList.add(1);
+		arrayList.add(2);
+		arrayList.add(3);
+		arrayList.add(4);
+		arrayList.add(5);
+		arrayList.add(6);
+		arrayList.add(7);
+		arrayList.add(8);
+		arrayList.add(9);
+		arrayList.add(10);
+
+		Iterator<Integer> iterator = arrayList.iterator();
+
+		System.out.println("List with all element  :" + arrayList);
+
+		for (; iterator.hasNext();) {
+			Integer integer = (Integer) iterator.next();
+			if (integer % 2 == 0) {
+				iterator.remove();
+			}
+		}
+		System.out.println("New List without even Numbers  :" + arrayList);
+	}
+}
+-------------------------
+package com.pack.assign;
+
+/*
+ * 
+*/
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class QuestionSixPartSecond {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> arrayList = new ArrayList<Integer>();
+
+		arrayList.add(1);
+		arrayList.add(2);
+		arrayList.add(3);
+		arrayList.add(4);
+		arrayList.add(5);
+		arrayList.add(6);
+		arrayList.add(7);
+		arrayList.add(8);
+		arrayList.add(9);
+		arrayList.add(10);
+
+		ArrayList<Integer> arrayList2 = new ArrayList<Integer>();
+
+		System.out.println("Old List  "+arrayList);
+
+		for (Iterator<Integer> iterator = arrayList.iterator(); iterator
+				.hasNext();) {
+			Integer integer = (Integer) iterator.next();
+			if (integer % 2 == 0) {
+				arrayList2.add(integer * 2);
+			}
+		}
+		arrayList.addAll(arrayList2);
+		System.out.println("New List  "+arrayList);
+
+	}
+}

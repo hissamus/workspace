@@ -1,0 +1,76 @@
+package com.hacker;
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+
+public class TagContentExtracter {
+
+	public static void main(String[] args){
+	      
+	      Scanner in = new Scanner(System.in);
+	      int testCases = Integer.parseInt(in.nextLine());
+	      while(testCases>0){
+	         String line = in.nextLine();
+	         if(test(line)){
+	        	 testCases--;
+	        	 continue;
+	         }
+	         int current=0;
+	         boolean invalidContent=true;
+	             while(true){
+	            	 
+	            	 int start=line.indexOf("<",current);
+	            	 if(start<0)break;
+	            	 int end=line.indexOf(">",start);
+	            	 if(end<0)break;
+	            	 String tag= line.substring(start+1, end);
+ 	            	 if(tag.length()==0){
+	            		 current=end+1;
+	            		 continue;
+	            	 }
+	            	 int tagEnd=line.indexOf("</"+tag+">");
+	            	 if(tagEnd>0){
+	            		 String content=line.substring(end+1,tagEnd);
+	            		 if(!content.isEmpty() && content.indexOf("<")<0){
+	            			 invalidContent=false;
+	            			 System.out.println(content);
+	            			 break;
+	            		 }
+	            	 }
+	            	 current=end+1;
+	             }
+	             if(invalidContent)System.out.println("None");
+	         
+	         testCases--;
+	      }
+	   }
+	
+	private static boolean test(String line){
+		
+		String pattern ="\\<(.+)\\>([^\\<\\>]+)\\<\\/\\1\\>";
+
+		   int count = 0;
+
+		    Pattern p = Pattern.compile(pattern);
+		    Matcher m =  p.matcher(line);
+
+		    while(m.find())
+		    {
+		        System.out.println(m.group(2));
+		        count++;
+		    }
+		    if(count == 0){
+		        System.out.println("None");
+		    }
+		    
+		    return true;
+	}
+
+}
+
+
+
+

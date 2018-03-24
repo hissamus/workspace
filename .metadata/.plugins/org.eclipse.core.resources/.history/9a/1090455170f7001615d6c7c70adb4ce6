@@ -1,0 +1,18 @@
+package com.hissam;
+
+public class Human extends AbstractClass {
+
+	public Human() {
+		super();
+		super.breath();
+		run();
+	}
+
+	@Override
+	public void run() {
+			if(super.alive){
+				System.out.println(" running with "+Math.random());
+			}
+	}
+
+}

@@ -1,0 +1,58 @@
+
+public class DeadLock {
+
+	public DeadLock() {
+
+	}
+
+	synchronized public void m() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		m();
+	}
+
+	synchronized public void n() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		n();
+	}
+
+	public static void main(String args[]) {
+		DeadLock d=new DeadLock();
+		Thread t1= new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+			d.m();				
+			}
+		});
+		
+Thread t2= new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+			d.n();				
+			}
+		});		
+t1.start();t2.start();
+
+try {
+	t1.join();
+	t2.join();
+} catch (InterruptedException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+
+	}
+	
+	
+}

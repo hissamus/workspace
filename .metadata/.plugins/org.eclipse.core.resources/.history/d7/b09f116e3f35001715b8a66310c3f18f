@@ -1,0 +1,49 @@
+package com.hacker;
+
+import java.util.Scanner;
+
+public class StringIntro {
+
+	public static void main(String[] args) {
+
+		Scanner in =new Scanner(System.in);
+		while(true){
+		String A=in.nextLine().toLowerCase();
+		String B=in.nextLine().toLowerCase();
+		int l_a=A.length();
+		int l_b=B.length(); 
+		char[] charA=new char[l_a];
+		char[] charB=new char[l_b];
+		
+		charA=A.toCharArray();
+		charB=B.toCharArray();
+		
+		int valA=strLexicalVal(charA,l_a);
+		int valB=strLexicalVal(charB,l_b);
+		
+		System.out.println(l_a+l_b);
+		
+		if(valA<valB){
+			
+			//System.out.println(A +"is lexically greater than "+B);
+			System.out.println("Yes");
+		}
+		else{
+			//System.out.println(A +"is NOT lexically greater than "+B);
+			System.out.println("No");
+		}
+		
+		}
+	}
+	
+	public static int strLexicalVal(char[] input, int inputLength){
+		
+		int val=0;
+		for(int i=0;i<inputLength;i++){
+			val+=(int)input[i];
+		}
+		
+		return val;
+	}
+
+}

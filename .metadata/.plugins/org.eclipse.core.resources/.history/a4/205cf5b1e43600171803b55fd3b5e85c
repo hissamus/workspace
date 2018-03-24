@@ -1,0 +1,46 @@
+package com.hacker;
+
+public class CountNSay {
+
+ public static void main(String[] args) {
+	
+	 
+	 for(int i=0;i<10;i++){
+		 System.out.println(countAndSay(i));
+	 }
+}
+	
+    public static String countAndSay(int n) {
+          String ans = "1";
+          
+          for(int i=2;i<=n;i++)
+          {
+               ans = GetSay(ans);
+          }
+          return ans;
+    }
+    
+    public static String GetSay(String inp){
+        int len = inp.length();
+        String ans = "";
+        char last = inp.charAt(0);
+        int count = 1;
+     
+        for(int i=1;i<len;i++)
+        {
+            char ch = inp.charAt(i);
+            if(ch == last)
+            {
+                count++;
+            }
+            else
+            {
+                ans+=count+""+last;
+                count = 1;
+                last = ch;
+            }
+        }
+         ans+=count+""+last;
+        return ans;
+    }
+}

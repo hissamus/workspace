@@ -1,0 +1,26 @@
+public class Test107 implements Runnable 
+{ 
+    private int x; 
+    private int y; 
+    
+    public Test107() {
+		super();
+	}
+
+    public static void main(String args[]) 
+    {
+        Test107 that = new Test107(); 
+        (new Thread(that)).start(); 
+        (new Thread(that)).start(); 
+    } 
+    public synchronized void run() 
+    {
+    	System.out.println(Thread.currentThread().getName());
+        for(int i = 0; i < 10; i++) 
+        { 
+            x++; 
+            y++; 
+            System.out.println("x = " + x + ", y = " + y); /* Line 17 */
+        } 
+    } 
+} 

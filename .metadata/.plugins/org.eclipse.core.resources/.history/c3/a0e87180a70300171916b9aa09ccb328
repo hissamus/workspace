@@ -1,0 +1,49 @@
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import javax.swing.plaf.SliderUI;
+
+public class LockExample implements Runnable {
+
+	private Resource r;
+	private Lock lock=new ReentrantLock(true);
+	public LockExample(Resource r) {
+		this.r=r;
+	}
+
+	public static void main(String[] args) {
+		
+	}
+
+	@Override
+	public void run() {
+		
+		try {
+			if(lock.tryLock(1,TimeUnit.SECONDS)){
+				System.out.println(Thread.currentThread().getName() +" ... Doing M() computations");
+				r.m();
+			}
+			r.n();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+
+}
+
+
+class Resource{
+	
+	
+	public void m() throws InterruptedException{
+		//System.out.println("Doing m computations");
+		Thread.sleep(5000);
+	}
+	
+	public void n(){
+		System.out.println(Thread.currentThread().getName() +" ... Doing N() computations");
+	}
+}
